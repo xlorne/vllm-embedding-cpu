@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  vllm-rerank:
+    image: vllm-cpu:latest
+    container_name: vllm-embedding-cpu
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      # 映射本地模型目录到容器
+      - ./models/bge-m3:/models/bge-m3
+      - ./embedding.py:/app/embedding.py
+    
+    command: [ "uvicorn","embedding:app","--host","0.0.0.0","--port","8000" ]
+      
