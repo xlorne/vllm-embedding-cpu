@@ -11,3 +11,4 @@ wheels/
 
 models/
 *.tar
+*.tar.gz
